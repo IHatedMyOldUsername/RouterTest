@@ -13,29 +13,23 @@ yAxis3 = []
 def plotPing(graph):
     if graph == 'global':
         pingres = pythonping.ping('google.com')
-        if(pingres.rtt_avg_ms >= 100):
-            return
         yAxis1.append(pingres.rtt_avg_ms)
         xAxis1.append(datetime.datetime.now())
     elif graph == 'local':
         pingres = pythonping.ping('192.168.1.1')
-        if(pingres.rtt_avg_ms >= 100):
-            return
         yAxis2.append(pingres.rtt_avg_ms)
         xAxis2.append(datetime.datetime.now())
     elif graph == 'globalip':
-        pingres = pythonping.ping('8.8.8.8')
-        if(pingres.rtt_avg_ms >= 100):
-            return
+        pingres = pythonping.ping('1.1.1.1')
         yAxis3.append(pingres.rtt_avg_ms)
         xAxis3.append(datetime.datetime.now())
 
 
-for i in range(1,100):
+for i in range(1,501):
     plotPing('global')
     plotPing('local')
     plotPing('globalip')
-    print('Ping {} of 100 performed'.format(i))
+    print('Ping {} of 500 performed'.format(i))
 
 plt.title("Bad Router is Bad")
 plt.xlabel('Date and Time')
